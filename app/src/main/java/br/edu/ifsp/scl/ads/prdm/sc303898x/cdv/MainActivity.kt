@@ -2,7 +2,9 @@ package br.edu.ifsp.scl.ads.prdm.sc303898x.cdv
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
 import br.edu.ifsp.scl.ads.prdm.sc303898x.cdv.databinding.ActivityMainBinding
 import br.edu.ifsp.scl.ads.prdm.sc303898x.cdv.databinding.TileNameBinding
 
@@ -22,6 +24,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val nameList = mutableListOf<String>()
+        amb.moreNameLl.children.forEach { view ->
+            (view as EditText).text.toString().let { name -> nameList.add(name) }
+        }
+        outState.putStringArray("NAMES", nameList.toTypedArray())
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        savedInstanceState.getStringArray("NAMES")?.forEach {name ->
+            TileNameBinding.inflate(layoutInflater).let { tileNameBinding ->
+                tileNameBinding.root.setText(name)
+                amb.moreNameLl.addView(tileNameBinding.root)
+            }
+        }
     }
 
     override fun onStart() {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc303898x.cdv.databinding.ActivityMainBinding
+import br.edu.ifsp.scl.ads.prdm.sc303898x.cdv.databinding.TileNameBinding
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy {
@@ -14,6 +15,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
         Log.v(getString(R.string.app_name), "onCreate: Iniciando cliclo de vida COMPLETO")
+
+        amb.addNameBt.setOnClickListener{
+            TileNameBinding.inflate(layoutInflater).let{
+                amb.moreNameLl.addView(it.root)
+            }
+        }
 
     }
 

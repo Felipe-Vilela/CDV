@@ -13,7 +13,12 @@
         android:theme="@style/Theme.CDV">
         <activity
             android:name=".AnotherActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="ACAO_INVENTADA_POR_MIM_QUE_NINGUEM_CONHECE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

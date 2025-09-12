@@ -31,21 +31,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             nextBt.setOnClickListener{
-//                startActivity(Intent(this@MainActivity, AnotherActivity::class.java))
-                Intent(this@MainActivity, AnotherActivity::class.java).apply {
-                    startActivity(this)
-                }
+                startActivity(Intent("ACAO_INVENTADA_POR_MIM_QUE_NINGUEM_CONHECE"))
             }
         }
-
-//        amb.nextBt.setOnClickListener{
-//            Intent(this, AnotherActivity::class.java).apply {
-//                startActivity(this)
-//            }
-//        }
-
-
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

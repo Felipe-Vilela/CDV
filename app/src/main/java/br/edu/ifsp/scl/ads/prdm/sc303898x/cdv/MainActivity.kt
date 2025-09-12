@@ -1,14 +1,14 @@
 package br.edu.ifsp.scl.ads.prdm.sc303898x.cdv
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import br.edu.ifsp.scl.ads.prdm.sc303898x.cdv.databinding.ActivityMainBinding
 import br.edu.ifsp.scl.ads.prdm.sc303898x.cdv.databinding.TileNameBinding
-import java.lang.Thread.sleep
+//import java.lang.Thread.sleep
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy {
@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(amb.root)
         Log.v(getString(R.string.app_name), "onCreate: Iniciando cliclo de vida COMPLETO")
 
+        setSupportActionBar(amb.toolbarIn.toolbar)
+        supportActionBar?.subtitle = this.localClassName
+
         with(amb){
             addNameBt.setOnClickListener{
                 TileNameBinding.inflate(layoutInflater).let{
@@ -28,16 +31,18 @@ class MainActivity : AppCompatActivity() {
             }
 
             nextBt.setOnClickListener{
-                Thread {
-                    sleep(15000)
-//                    Toast.makeText(this@MainActivity,
-//                                    "Acordou",
-//                                    Toast.LENGTH_SHORT).show()
-                    amb.nameEt.setText("Acordou!")
-                }.start()
+//                startActivity(Intent(this@MainActivity, AnotherActivity::class.java))
+                Intent(this@MainActivity, AnotherActivity::class.java).apply {
+                    startActivity(this)
+                }
             }
         }
 
+//        amb.nextBt.setOnClickListener{
+//            Intent(this, AnotherActivity::class.java).apply {
+//                startActivity(this)
+//            }
+//        }
 
 
 

@@ -3,10 +3,12 @@ package br.edu.ifsp.scl.ads.prdm.sc303898x.cdv
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import br.edu.ifsp.scl.ads.prdm.sc303898x.cdv.databinding.ActivityMainBinding
 import br.edu.ifsp.scl.ads.prdm.sc303898x.cdv.databinding.TileNameBinding
+import java.lang.Thread.sleep
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy {
@@ -18,11 +20,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(amb.root)
         Log.v(getString(R.string.app_name), "onCreate: Iniciando cliclo de vida COMPLETO")
 
-        amb.addNameBt.setOnClickListener{
-            TileNameBinding.inflate(layoutInflater).let{
-                amb.moreNameLl.addView(it.root)
+        with(amb){
+            addNameBt.setOnClickListener{
+                TileNameBinding.inflate(layoutInflater).let{
+                    moreNameLl.addView(it.root)
+                }
+            }
+
+            nextBt.setOnClickListener{
+                Thread {
+                    sleep(15000)
+//                    Toast.makeText(this@MainActivity,
+//                                    "Acordou",
+//                                    Toast.LENGTH_SHORT).show()
+                    amb.nameEt.setText("Acordou!")
+                }.start()
             }
         }
+
+
+
 
     }
 
